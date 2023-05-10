@@ -1,0 +1,40 @@
+﻿@model List<Slider>
+<div class="card shadow mb-4">
+    <div class="card-header py-3 ">
+        <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+
+    </div>
+    <a asp-action="Create" asp-controller="Slider"> <button class="btn btn-success"> Create </button> </a>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Settings</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Slider slider in Model)
+                    {
+
+                        <tr>
+                            <td>@slider.Title</td>
+                            <td>
+                                <a asp-controller="Slider" asp-action="Details" asp-route-id="@slider.Id" > <button class="btn btn-warning"> Detail </button> </a>
+                                <a asp-controller="Slider" asp-action="Update" asp-route-id="@slider.Id"> <button class="btn btn-info"> Update </button> </a>
+                               
+                                <form method="post" asp-controller="Slider" asp-action="Delete" asp-route-id="@slider.Id
+">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

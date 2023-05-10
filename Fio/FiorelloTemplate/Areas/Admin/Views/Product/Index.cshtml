@@ -1,0 +1,55 @@
+﻿@model List<GetProductVm>
+@{
+    int count = 0;
+};
+<div class="card shadow mb-4">
+    <div class="card-header py-3 ">
+        <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+    </div>
+    <a asp-controller="Product" asp-action="Create"> <button class="btn btn-success"> Create </button></a>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>№</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Description</th>
+                        <th>Image</th>
+                        <th>Settings</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (GetProductVm item in Model)
+                    {
+
+                        <tr>
+                            <td>@(++count)</td>
+                            <td>@item.Name</td>
+                            <td>@item.Price</td>
+                            <td>@item.Description</td>
+                            <td>
+                                <img width=200px src="~/img/@item.ImageName">
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id" asp-controller="Product"> <button class="btn btn-dark"> Edit </button></a>
+                                <a asp-controller="Product" asp-action="Details" asp-route-id="@item.Id"> <button class="btn btn-info"> Details </button></a>
+                                <form method="post" asp-controller="Product" asp-action="Delete" asp-route-id="@item.Id">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</div>
+<!-- /.container-fluid -->
+            </div>
+<!-- End of Main Content -->

@@ -1,0 +1,36 @@
+﻿@model CreateProductVm
+<form method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" id="exampleInputEmail1">
+        <span class="text-danger" asp-validation-for="Name"></span>
+    </div>
+
+    <div class="mb-3">
+
+        <label asp-for="Price"></label>
+        <input asp-for="Price" class="form-control" id="exampleInputEmail1">
+        <span class="text-danger" asp-validation-for="Price"></span>
+    </div>
+    <div class="mb-3">
+
+        <label asp-for="Description"></label>
+        <input asp-for="Description" class="form-control" id="exampleInputEmail1">
+        <span class="text-danger" asp-validation-for="Description"></span>
+    </div>
+    <select class="custom-select" asp-for="CategoryId">
+        @foreach (Category item in (List<Category>)ViewData["categories"])
+        {
+            <option value="@item.Id"> @item.Name</option>
+        }
+    </select>
+    <div class="mb-3">
+        <label asp-for="Images"></label>
+        <input asp-for="Images" class="form-control" id="exampleInputEmail1">
+        <span class="text-danger" asp-validation-for="Images"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary" asp-action="Create" asp-controller="Product">Create</button>
+</form>{
+}
